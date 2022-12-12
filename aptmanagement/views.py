@@ -15,4 +15,4 @@ def LoginPage(result) :
 
 def TenantInfoPage(request) :
     #This will connect to the table html
-    return render(request, 'aptmanagement/tables.html')
+    return render(request, 'aptmanagement/tennants.html')

@@ -4,6 +4,6 @@ from .views import IndexViewPage, LoginPage, TenantInfoPage
 
 urlpatterns = [
     path("", IndexViewPage, name = "index"),
-    path("tables/", LoginPage, name = "tables"),
-    path("contact/", TenantInfoPage, name = "contact")
+    path("tennants/", TenantInfoPage, name = "tennants"),
+    path("contact/", LoginPage, name = "contact")
 ]   
