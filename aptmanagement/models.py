@@ -7,6 +7,7 @@ class Tenant(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=10)
+    email = models.EmailField(max_length=50)
     rent_start = models.DateField()
     rent_end = models.DateField()
     apartment = models.ForeignKey('Apartments', null=True, blank=True, on_delete=models.SET_NULL)

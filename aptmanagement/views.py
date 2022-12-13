@@ -28,11 +28,13 @@ def TenantInfoPage(request) :
                 annualEarnings = annualEarnings + apartment.rent * 12
                 monthlyEarnings = monthlyEarnings + apartment.rent
 
+    numTenants = len(tenants)
     context = {
         "tenants" : tenants,
         "apartments" : apartments,
         "annual" : annualEarnings,
-        "monthly" : monthlyEarnings
+        "monthly" : monthlyEarnings,
+        "numTenants" :numTenants
     }
 
     return render(request, 'aptmanagement/tenants.html', context)
@@ -47,6 +49,7 @@ def AddTenant(request) :
         tenant.rent_start = request.POST['rent_start_date']  
         tenant.rent_end = request.POST['rent_end_date']
         tenant.phone = request.POST['phone'] 
+        tenant.email = request.POST['email']
 
         #Use existing Apartments or create new Apartment
         data = Apartments.objects.all()
@@ -91,6 +94,7 @@ def UpdateTenant(request, id):
         tenant.rent_start = request.POST['rent_start_date']  
         tenant.rent_end = request.POST['rent_end_date']
         tenant.phone = request.POST['phone'] 
+        tenant.email = request.POST['email']
         
         data = Apartments.objects.all()
         inDictionary = False
@@ -100,7 +104,11 @@ def UpdateTenant(request, id):
             elif apartments.house == request.POST['house'] :
                 inDictionary = True
                 apartment = Apartments.objects.get(house = request.POST['house'])
-                
+                if apartment.rent != request.POST['rent'] :
+                    apartment.rent = request.POST['rent']
+                else:
+                    continue
+
         #Create new Apartment if not already created
         if inDictionary == False :
             apartment = Apartments()

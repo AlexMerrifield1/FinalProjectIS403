@@ -60,6 +60,12 @@
                                 id='phone' placeholder={{tenant.phone}}>
                         </div>
                         <br>
+                        <div class="form-group">
+                            <label for='email'>Email: </label>
+                            <input type="text" style="width: 500px" class="form-control form-control-user" name = 'email' 
+                                id='email' placeholder={{tenant.email}}>
+                        </div>
+                        <br>
                         {% for apartment in apartments%}
                             {% if tenant.apartment_id == apartment.id%}
                             <div class="form-group">
