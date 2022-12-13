@@ -30,6 +30,15 @@
             <div id="content">
 
                 <div class="container-fluid">
+                    <form name="form" method="post" action="{%url 'tenants' %}">
+                        {% csrf_token%}
+                    <button type="submit" class="btn btn-secondary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-arrow-left"></i>
+                        </span>
+                        <span class="text">Go Back</span>
+                    </button>
+                    </form>
                     <form name="form" method="post" action="{%url 'updateTenant' id=tenant.id%}">
                         {% csrf_token%}
                         <br><br>
@@ -83,7 +92,12 @@
                             {% endif %}
                         {% endfor %}
 
-                        <button class = "btn-lg" type="submit">Add</button>
+                        <button type="submit" class="btn btn-secondary btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                            <span class="text">Add Tenant</span>
+                        </button>
                         <br></br>
                     </form>
                 </div>

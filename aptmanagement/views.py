@@ -4,10 +4,19 @@ from aptmanagement.models import Tenant, Admin, Apartments
 
 # Create your views here.
 def IndexViewPage(request) :
-    #return HttpResponse ('Welcome to Apartment Management :)')
-    #We that these HttpResponses in here, but I think we'll want
-    # to be using render instead
-    return render(request, 'aptmanagement/index.html')
+    tenants = Tenant.objects.all()
+    apartments = Apartments.objects.all()
+    monthlyEarnings = 0
+    for tenant in tenants :
+            apartment_id = tenant.apartment_id
+            for apartment in apartments :
+                if apartment_id == apartment.id :
+                    monthlyEarnings = monthlyEarnings + apartment.rent
+
+    context = {
+        "monthly" : monthlyEarnings,
+    }
+    return render(request, 'aptmanagement/index.html',context)
 
 def LoginPage(result) :
     #Not sure which html file to use with this one. 
